@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/sh
 DIR=$(cd "$(dirname "$0")"; pwd)
 cd "$DIR" && cd ../Resources
 osascript webloc2urlGUI.applescript
