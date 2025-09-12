@@ -4,7 +4,7 @@ tell application "Finder"
 end tell
 set theWebloc to (choose file with prompt "Please select .webloc file(s)" of type "webloc" default location (path to desktop) with multiple selections allowed)
 tell application "Finder"
-duplicate theWebloc to current_path & "webloc_files"
+	duplicate theWebloc to current_path & "webloc_files"
 end tell
 
 
@@ -14,4 +14,4 @@ set posixWebloc to POSIX path of weblocOne
 tell application "Finder"
 	set containerDir to POSIX path of (get (container of (weblocOne)) as text)
 end tell
-do shell script "cd webloc_files && mv -n *.url \"" & containerDir & "\"&& rm -rf ../webloc_files && filename=\"" & posixWebloc & "\" && open -R \"${filename%.*}.url\""
+do shell script "cd webloc_files && mv -n *.url \"" & containerDir & "\"&& rm -rf ../webloc_files && filename=\"" & posixWebloc & "\" && touch -r \"${filename%.*}.webloc\" \"${filename%.*}.url\" && trash \"${filename%.*}.webloc\" && open -R \"${filename%.*}.url\""
